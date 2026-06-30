@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { Nav } from "@/components/Nav";
+import { Shell } from "@/components/Shell";
 import { Providers } from "./providers";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -16,12 +16,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className="dark">
       <body className={inter.className}>
         <Providers>
-          <div className="flex min-h-screen">
-            <Nav />
-            <main className="flex-1 overflow-auto p-6">
-              {children}
-            </main>
-          </div>
+          <Shell>{children}</Shell>
         </Providers>
       </body>
     </html>

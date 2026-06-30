@@ -5,7 +5,7 @@ from prometheus_fastapi_instrumentator import Instrumentator
 
 from app.core.config import settings
 from app.core.redis import close_redis, get_redis
-from app.api.routers import auth, market, analytics, signals, paper, backtest, positions, research
+from app.api.routers import auth, market, analytics, signals, paper, backtest, positions, research, settings
 from app.api.websocket.handlers import ws_pnl, ws_position_alerts, ws_signals, ws_ticks
 
 logger = structlog.get_logger()
@@ -36,6 +36,7 @@ app.include_router(paper.router, prefix="/api/v1/paper", tags=["paper-trading"])
 app.include_router(backtest.router, prefix="/api/v1/backtest", tags=["backtest"])
 app.include_router(positions.router, prefix="/api/v1/positions", tags=["positions"])
 app.include_router(research.router, prefix="/api/v1/research", tags=["research"])
+app.include_router(settings.router, prefix="/api/v1/settings", tags=["settings"])
 
 # WebSocket endpoints
 @app.websocket("/ws/market/ticks/{symbol}")

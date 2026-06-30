@@ -3,7 +3,7 @@ import axios from "axios";
 const BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
 export const api = axios.create({
-  baseURL: `${BASE}/api`,
+  baseURL: `${BASE}/api/v1`,
   timeout: 30_000,
 });
 
@@ -26,7 +26,7 @@ api.interceptors.response.use(
       const refresh = localStorage.getItem("refresh_token");
       if (refresh) {
         try {
-          const res = await axios.post(`${BASE}/api/auth/refresh`, { refresh_token: refresh });
+          const res = await axios.post(`${BASE}/api/v1/auth/refresh`, { refresh_token: refresh });
           const { access_token } = res.data;
           localStorage.setItem("access_token", access_token);
           setAuthToken(access_token);
